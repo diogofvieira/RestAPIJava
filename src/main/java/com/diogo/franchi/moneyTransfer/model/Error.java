@@ -10,4 +10,14 @@ public class Error {
         this.message = message;
     }
 
+	public int getHttpStatusCode() {
+		return httpStatusCode;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+    
+    
+
 }

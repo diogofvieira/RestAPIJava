@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public class Account {
 
-    private final String id;
-    private final String accountNumber;
+    private String id;
+    private String accountNumber;
     private BigDecimal amount;
 
     public Account(BigDecimal amount) {
@@ -16,20 +16,33 @@ public class Account {
         this.id = UUID.randomUUID().toString();
         this.amount = amount;
     }
-
-    public String getAccountNumber() {
-        return accountNumber;
+    
+    public Account() {
+        
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+    public String getId() {
+		return id;
+	}
 
-   public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public static Account newAccount(Account data) {
-        return new Account(data.getAmount());
-    }
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+		
 }
