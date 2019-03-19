@@ -1,4 +1,4 @@
-package com.diogo.franchi.moneyTransfer.dao;
+package com.diogo.franchi.money.transfer.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

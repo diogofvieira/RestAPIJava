@@ -1,9 +1,11 @@
-package com.diogo.franchi.moneyTransfer;
+package com.diogo.franchi.money.transfer;
 
 import io.restassured.RestAssured;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.diogo.franchi.money.transfer.Application;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;

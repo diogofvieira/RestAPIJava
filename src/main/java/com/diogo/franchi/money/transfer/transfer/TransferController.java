@@ -1,7 +1,7 @@
-package com.diogo.franchi.moneyTransfer.transfer;
+package com.diogo.franchi.money.transfer.transfer;
 
-import com.diogo.franchi.moneyTransfer.model.Account;
-import com.diogo.franchi.moneyTransfer.model.Error;
+import com.diogo.franchi.money.transfer.model.Account;
+import com.diogo.franchi.money.transfer.model.Error;
 import com.google.gson.Gson;
 import spark.Request;
 import spark.Response;

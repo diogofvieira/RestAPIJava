@@ -1,7 +1,7 @@
-package com.diogo.franchi.moneyTransfer.account;
+package com.diogo.franchi.money.transfer.account;
 
-import com.diogo.franchi.moneyTransfer.dao.EmbeddedDatabase;
-import com.diogo.franchi.moneyTransfer.model.Account;
+import com.diogo.franchi.money.transfer.dao.EmbeddedDatabase;
+import com.diogo.franchi.money.transfer.model.Account;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

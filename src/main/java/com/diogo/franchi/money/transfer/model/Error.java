@@ -1,4 +1,4 @@
-package com.diogo.franchi.moneyTransfer.model;
+package com.diogo.franchi.money.transfer.model;
 
 public class Error {
 

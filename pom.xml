@@ -74,7 +74,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>com.diogo.franchi.moneyTransfer.Application</mainClass>
+                                <mainClass>com.diogo.franchi.money.transfer.Application</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

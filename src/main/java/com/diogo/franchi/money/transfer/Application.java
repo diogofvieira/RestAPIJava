@@ -1,12 +1,12 @@
-package com.diogo.franchi.moneyTransfer;
+package com.diogo.franchi.money.transfer;
 
-import com.diogo.franchi.moneyTransfer.account.AccountController;
-import com.diogo.franchi.moneyTransfer.account.AccountDAO;
-import com.diogo.franchi.moneyTransfer.account.AccountService;
-import com.diogo.franchi.moneyTransfer.dao.EmbeddedDatabase;
-import com.diogo.franchi.moneyTransfer.model.Error;
-import com.diogo.franchi.moneyTransfer.transfer.TransferController;
-import com.diogo.franchi.moneyTransfer.transfer.TransferService;
+import com.diogo.franchi.money.transfer.account.AccountController;
+import com.diogo.franchi.money.transfer.account.AccountDAO;
+import com.diogo.franchi.money.transfer.account.AccountService;
+import com.diogo.franchi.money.transfer.dao.EmbeddedDatabase;
+import com.diogo.franchi.money.transfer.model.Error;
+import com.diogo.franchi.money.transfer.transfer.TransferController;
+import com.diogo.franchi.money.transfer.transfer.TransferService;
 import com.google.gson.Gson;
 
 import static spark.Spark.*;

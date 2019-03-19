@@ -1,10 +1,10 @@
-package com.diogo.franchi.moneyTransfer.account;
+package com.diogo.franchi.money.transfer.account;
 
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.diogo.franchi.moneyTransfer.model.Account;
+import com.diogo.franchi.money.transfer.model.Account;
 
 import static spark.utils.Assert.notNull;
 

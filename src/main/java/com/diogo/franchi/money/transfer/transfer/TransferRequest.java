@@ -1,4 +1,4 @@
-package com.diogo.franchi.moneyTransfer.transfer;
+package com.diogo.franchi.money.transfer.transfer;
 
 import java.math.BigDecimal;
 
