@@ -97,9 +97,10 @@ public class ApplicationTest {
     @Test
     public void getAllAccountsGETNoMatchers() {
         //Set Up
+    	given().body("{\"amount\": 100}").post("/account");
         post("/accounts/delete");
         //Test
-        get("/accounts").then().assertThat().statusCode(200);
+        get("/accounts").then().assertThat().statusCode(200).body("amount", hasSize(0));;
     }
 
     @Test

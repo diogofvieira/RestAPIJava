@@ -112,7 +112,7 @@ public class AccountDAO {
         try {
             connection.setAutoCommit(false);
             deletePreparedStatement = connection.prepareStatement(deleteQuery);
-            deletePreparedStatement.executeQuery();
+            deletePreparedStatement.executeUpdate();
             deletePreparedStatement.close();
             connection.commit();
         } catch (SQLException e) {
