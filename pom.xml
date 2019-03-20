@@ -41,6 +41,17 @@
             <artifactId>rest-assured</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.25.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+    		<groupId>com.h2database</groupId>
+    		<artifactId>h2</artifactId>
+    		<version>1.4.197</version>    		
+		</dependency>
     </dependencies>
 
 
@@ -63,7 +74,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>com.diogo.franchi.moneyTransfer.Start</mainClass>
+                                <mainClass>com.diogo.franchi.money.transfer.Application</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
