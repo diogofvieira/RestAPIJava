@@ -37,7 +37,7 @@ accountDebit (alphanumeric) = This is the account that will be debited the value
 
 accountCredit (alphanumeric) = This is the account that will be credited the value of the transfer.
 
-value (Decimal) = This is the value of the transfer.
+value (Decimal [19,2]) = This is the value of the transfer.
 
 ---
 
