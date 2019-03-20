@@ -13,66 +13,57 @@ public class EmbeddedDatabase {
     private static final String DB_CONNECTION = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
     private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
+    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ACCOUNT(id varchar(255) not null, number varchar(255), amount decimal(19,2), PRIMARY KEY(id))";
 	
-	public static void openServerDataBase() {
-        Server server;
+	public static void openServerDataBase(){
 		try {
-			server = Server.createTcpServer().start();
-			System.out.println("Server started and connection is open.");
-			System.out.println("URL: jdbc:h2:" + server.getURL() + "/mem:test");
-		} catch (SQLException e) {
+			Server.createTcpServer().start();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
 	
-	public static Connection getDBConnection() {
+	public static void closeDataBase(){
+		try {
+			Server.createTcpServer().shutdown();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+	
+	public static Connection getDBConnection(){
         Connection dbConnection = null;
         try {
-            Class.forName(DB_DRIVER);
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
-            return dbConnection;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+			Class.forName(DB_DRIVER);
+			dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
         return dbConnection;
     }
 	
-	public static void createTable() {
+	public static void createTable(){
         Connection connection = getDBConnection();
         PreparedStatement createPreparedStatement = null;
-
-        String createQuery = "CREATE TABLE ACCOUNT(id varchar(255) not null, number varchar(255), amount decimal(19,2), PRIMARY KEY(id))";
-        
         try {
-            connection.setAutoCommit(false);
-
-            createPreparedStatement = connection.prepareStatement(createQuery);
-            createPreparedStatement.executeUpdate();
-            createPreparedStatement.close();
-            System.out.println(createQuery);
-            connection.commit();
-        } catch (SQLException e) {
-            System.out.println("Exception Message " + e.getLocalizedMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
             try {
+				connection.setAutoCommit(false);
+				createPreparedStatement = connection.prepareStatement(CREATE_TABLE);
+				createPreparedStatement.executeUpdate();
+				createPreparedStatement.close();
+				connection.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        } finally {
+			try {
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-        }
-    }
-	
-	
-	
-	
-	
-    
-    
+		}
+     }
 	
 }

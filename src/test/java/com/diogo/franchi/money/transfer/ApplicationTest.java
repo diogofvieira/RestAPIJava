@@ -6,17 +6,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.diogo.franchi.money.transfer.Application;
+import com.diogo.franchi.money.transfer.dao.EmbeddedDatabase;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static spark.Spark.awaitInitialization;
 import static spark.Spark.stop;
 
-
 public class ApplicationTest {
 
-    @BeforeClass
-    public static void setUp() { 
+    @SuppressWarnings("static-access")
+	@BeforeClass
+    public static void setUp(){ 
         Application newRoutes = new Application();
         newRoutes.main(null);
         awaitInitialization();
@@ -27,6 +28,7 @@ public class ApplicationTest {
 
     @AfterClass
     public static void tearDown() {
+    	EmbeddedDatabase.closeDataBase();
         RestAssured.reset();
         stop();
     }
@@ -96,13 +98,20 @@ public class ApplicationTest {
 
     @Test
     public void getAllAccountsGETNoMatchers() {
-        //Set Up
-    	given().body("{\"amount\": 100}").post("/account");
-        post("/accounts/delete");
+    	//Set Up
+    	post("/accounts/delete");
         //Test
         get("/accounts").then().assertThat().statusCode(200).body("amount", hasSize(0));;
     }
 
+    @Test
+    public void postDeleteAll() {
+        //Set Up
+    	given().body("{\"amount\": 100}").post("/account");
+        //Test
+    	post("/accounts/delete").then().assertThat().statusCode(200).body("httpStatusCode", is(204));
+    }
+    
     @Test
     public void routeFail() {
         get("/not a valid route")

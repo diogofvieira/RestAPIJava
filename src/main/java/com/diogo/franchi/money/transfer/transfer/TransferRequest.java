@@ -4,17 +4,20 @@ import java.math.BigDecimal;
 
 public class TransferRequest {
 	
-	private final String accountDebit;
-    private final String accountCredit;
-    private final BigDecimal value;
+	private  String accountDebit;
+    private  String accountCredit;
+    private  BigDecimal value;
 
-    public TransferRequest(String accountDebit, String accountCredit, BigDecimal value) {
-        this.accountDebit = accountDebit;
-        this.accountCredit = accountCredit;
-        this.value = value;
+    public TransferRequest() {
     }
 
-    public String getAccountDebit() {
+    public TransferRequest(String accountDebit, String accountCredit, BigDecimal value) {
+		this.accountDebit = accountDebit;
+		this.accountCredit = accountCredit;
+		this.value = value;
+	}
+
+	public String getAccountDebit() {
         return accountDebit;
     }
 
@@ -25,5 +28,13 @@ public class TransferRequest {
     public BigDecimal getValue() {
         return value;
     }
+
+	@Override
+	public String toString() {
+		return "TransferRequest [accountDebit=" + accountDebit + ", accountCredit=" + accountCredit + ", value=" + value
+				+ "]";
+	}
+    
+    
 
 }

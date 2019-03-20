@@ -23,13 +23,12 @@ public class AccountService {
         return accountDao.save(new Account(accountRequest.getAmount()));
     }
 
-    public List<Account> listAll() {
+    public List<Account> listAll(){
     	return accountDao.findAll();
     }
 
-	public Boolean clear() {
-    	accountDao.clear();
-    	return true;
+	public int clear()  {
+		return accountDao.clear();
     }
 
     private void validateAccountRequest(AccountRequest accountRequest) {

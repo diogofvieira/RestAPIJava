@@ -44,5 +44,12 @@ public class Account {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", accountNumber=" + accountNumber + ", amount=" + amount + "]";
+	}
+	
+	
 		
 }

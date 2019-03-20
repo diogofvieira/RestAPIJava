@@ -4,12 +4,13 @@ import com.diogo.franchi.money.transfer.account.AccountController;
 import com.diogo.franchi.money.transfer.account.AccountDAO;
 import com.diogo.franchi.money.transfer.account.AccountService;
 import com.diogo.franchi.money.transfer.dao.EmbeddedDatabase;
-import com.diogo.franchi.money.transfer.model.Error;
+import com.diogo.franchi.money.transfer.model.MessageResponse;
 import com.diogo.franchi.money.transfer.transfer.TransferController;
 import com.diogo.franchi.money.transfer.transfer.TransferService;
 import com.google.gson.Gson;
 
 import static spark.Spark.*;
+
 
 public class Application {
 
@@ -17,16 +18,13 @@ public class Application {
     private static Gson gson = new Gson();
     private static AccountController accountController;
     private static TransferController transferController;
-    
-    
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         accountController = new AccountController(new AccountService(new AccountDAO()));
         transferController = new TransferController(new TransferService(new AccountDAO()));
         bootstrapRoutes();
         EmbeddedDatabase.openServerDataBase();
         EmbeddedDatabase.createTable();
-                
     }
 
     private static void bootstrapRoutes() {
@@ -52,8 +50,8 @@ public class Application {
                 accountController::deleteAll,
                 gson::toJson);
 
-        notFound(gson.toJson(new Error(404, "Path Not Found")));
-        internalServerError(gson.toJson(new Error(500, "Default Internal Server Error")));
+        notFound(gson.toJson(new MessageResponse(404, "Path Not Found")));
+        internalServerError(gson.toJson(new MessageResponse(500, "Default Internal Server Error")));
     }
     
     

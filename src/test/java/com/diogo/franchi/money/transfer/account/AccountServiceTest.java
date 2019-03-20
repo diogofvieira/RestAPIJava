@@ -1,5 +1,6 @@
 package com.diogo.franchi.money.transfer.account;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +13,15 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.diogo.franchi.money.transfer.dao.EmbeddedDatabase;
 import com.diogo.franchi.money.transfer.model.Account;
+
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,9 +37,14 @@ public class AccountServiceTest {
     	EmbeddedDatabase.openServerDataBase();
         EmbeddedDatabase.createTable();
     }
+    
+    @AfterClass
+    public static void tearDown() {
+    	EmbeddedDatabase.closeDataBase();
+    }
 
     @Test
-    public void validateAccountRequest() {
+    public void validateAccountRequest()  {
         accountService.create(new AccountRequest(new BigDecimal(100)));
         try {
             accountService.create(null);
@@ -60,9 +70,9 @@ public class AccountServiceTest {
         } catch (IllegalArgumentException expected) {
         }
     }
-
+    
     @Test
-    public void validRequestShouldSaveToDatabase() {
+    public void validRequestShouldSaveToDatabase()  {
         AccountRequest accountRequest = new AccountRequest(new BigDecimal(100));
         ArgumentCaptor<Account> argument = ArgumentCaptor.forClass(Account.class);
 
@@ -71,4 +81,27 @@ public class AccountServiceTest {
         verify(accountDAO).save(argument.capture());
         assertThat(argument.getValue().getAmount(), is(accountRequest.getAmount()));
     }
+    
+    @Test
+    public void validRequestShouldGetListOnDatabase()  {
+    	
+    	Account account = new Account();
+    	List<Account> accountList = new ArrayList<Account>();
+    	accountList.add(account);
+    	
+    	when(accountDAO.findAll()).thenReturn(accountList);
+    	
+    	assertThat(accountService.listAll().size(), is(1));
+    }
+    
+    @Test
+    public void validRequestShouldclearListOnDatabase()  {
+    	int refreshed = 12; 
+    	
+    	when(accountDAO.clear()).thenReturn(refreshed);
+    	
+    	assertThat(accountService.clear(), is(12));
+    }
+    
+    
 }

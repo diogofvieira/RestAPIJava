@@ -1,7 +1,7 @@
 package com.diogo.franchi.money.transfer.transfer;
 
 import com.diogo.franchi.money.transfer.model.Account;
-import com.diogo.franchi.money.transfer.model.Error;
+import com.diogo.franchi.money.transfer.model.MessageResponse;
 import com.google.gson.Gson;
 import spark.Request;
 import spark.Response;
@@ -25,10 +25,10 @@ public class TransferController {
 	        	return account;
 	        } catch (IllegalArgumentException ex) { 
 	            res.status(400);
-	            return new Error(400, "Bad Request");
+	            return new MessageResponse(400, "Bad Request");
 	        } catch (Exception ex) {
 	            res.status(500);
-	            return new Error(500, "Internal Server Error");
+	            return new MessageResponse(500, "Internal Server Error");
 	        }
 	    }
 }

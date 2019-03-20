@@ -1,12 +1,16 @@
 package com.diogo.franchi.money.transfer.model;
 
-public class Error {
+public class MessageResponse {
 
-    private final int httpStatusCode;
+    private int httpStatusCode;
     private final String message;
 
-    public Error(int httpStatusCode, String message) {
+    public MessageResponse(int httpStatusCode, String message) {
         this.httpStatusCode = httpStatusCode;
+        this.message = message;
+    }
+    
+    public MessageResponse(String message) {
         this.message = message;
     }
 
