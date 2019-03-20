@@ -13,7 +13,7 @@ A standalone rest api for money transfer between accounts, no server/dataBase is
 
 ## How to test
 
-1. {project path} mvn clean test
+1. {project path} mvn clean verify
 
 ---
 
@@ -95,4 +95,9 @@ endpoin: /accounts/delete
 
 method: post
 
-return: 204
+return:
+    
+     {
+    	"httpStatusCode": 204,
+   	"message": "No Content - deleted 2 account(s)"
+     }
